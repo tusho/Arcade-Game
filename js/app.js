@@ -22,14 +22,12 @@ for (i=0; i <= 6; i++) {
 
 var Player = function() {
     this.sprite = 'images/char-boy.png';
-    this.x = 5;
-    this.y = 5;
+    this.x = 200;
+    this.y = 400;
 };
 
 Player.prototype.update = function(dt) {
-    // if (keys === 37) {
-    //   console.log('left');
-    // }
+
 };
 
 Player.prototype.render = function() {
@@ -38,14 +36,14 @@ Player.prototype.render = function() {
 
 
 Player.prototype.handleInput = function (keyCode) {
-  if (keyCode === 'up') {
-    console.log(keyCode);
-  } else if (keyCode === 'right') {
-    console.log(keyCode);
-  } else if (keyCode === 'down') {
-    console.log(keyCode);
-  } else if (keyCode === 'left') {
-    console.log(keyCode);
+  if (keyCode === 'up' && this.y > 20) {
+    this.y -= 83;
+  } else if (keyCode === 'right' && this.x < 400) {
+    this.x += 100;
+  } else if (keyCode === 'down' && this.y < 400) {
+    this.y += 83;
+  } else if (keyCode === 'left' && this.x > 20) {
+    this.x -= 100;
   }
 };
 
