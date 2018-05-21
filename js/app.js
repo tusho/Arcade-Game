@@ -27,11 +27,26 @@ var Player = function() {
 };
 
 Player.prototype.update = function(dt) {
-
+    // if (keys === 37) {
+    //   console.log('left');
+    // }
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
+Player.prototype.handleInput = function (keyCode) {
+  if (keyCode === 'up') {
+    console.log(keyCode);
+  } else if (keyCode === 'right') {
+    console.log(keyCode);
+  } else if (keyCode === 'down') {
+    console.log(keyCode);
+  } else if (keyCode === 'left') {
+    console.log(keyCode);
+  }
 };
 
 var player = new Player();
