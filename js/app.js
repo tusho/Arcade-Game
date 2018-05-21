@@ -10,8 +10,7 @@ Enemy.prototype.render = function() {
 };
 
 Enemy.prototype.update = function(dt) {
-  this.x = (this.x + this.speed);
-  this.y = 83 * this.row;
+
 };
 
 var allEnemies = [];
@@ -34,10 +33,17 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Player.prototype.reset = function () {
+    this.x = 200;
+    this.y = 400;
+};
 
 Player.prototype.handleInput = function (keyCode) {
   if (keyCode === 'up' && this.y > 20) {
     this.y -= 83;
+    if (this.y < 50) {
+      this.reset();
+    }
   } else if (keyCode === 'right' && this.x < 400) {
     this.x += 100;
   } else if (keyCode === 'down' && this.y < 400) {
@@ -47,8 +53,9 @@ Player.prototype.handleInput = function (keyCode) {
   }
 };
 
+
+
 var player = new Player();
-var enemy = new Enemy();
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
