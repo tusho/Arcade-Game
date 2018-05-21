@@ -15,7 +15,10 @@ Enemy.prototype.update = function(dt) {
 };
 
 var allEnemies = [];
-allEnemies.push(Enemy);
+for (i=0; i <= 6; i++) {
+  allEnemies.push(new Enemy());
+}
+
 
 var Player = function() {
     this.sprite = 'images/char-boy.png';
