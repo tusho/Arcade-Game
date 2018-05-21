@@ -1,4 +1,4 @@
-// This file provides the game loop functionality (update entities and render), 
+// This file provides the game loop functionality (update entities and render),
 // draws the initial game board on the screen, and then calls the update and
 // render methods on the player and enemy objects (defined in app.js).
 
