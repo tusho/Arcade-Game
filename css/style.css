@@ -1,3 +1,48 @@
 body {
     text-align: center;
 }
+
+#myModal {
+  display: none;
+}
+
+.modal-content {
+  position: absolute;
+  background: linear-gradient(160deg, #63bf4f 0%, #4e68ce 100%);
+  font-family: 'Coda', cursive;
+  text-align: center;
+  top: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 60%;
+  max-width: 250px;
+  height: auto;
+  background-color: #fefefe;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 20px 20px 20px;
+  border-radius: 15px;
+  border: solid 10px white;
+}
+
+.modal-content h1 {
+  font-weight: bold;
+}
+
+.win-button {
+  font-family: 'Coda', cursive;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background: #f48b41;
+  cursor: pointer;
+}
+
+.win-button:hover {
+  background: #f4d341;
+}

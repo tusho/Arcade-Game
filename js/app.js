@@ -47,7 +47,7 @@ let Player = function() {
 
 Player.prototype.update = function(dt) {
     if (this.y < 50) {
-      this.reset();
+      gameFinish();
     }
 };
 
@@ -95,7 +95,15 @@ function checkCollisions() {
   });
 }
 
+function enemyReset() {
+  allEnemies.forEach(function(enemy) {
+      enemy.x = -150;
+  });
+}
 
+function gameFinish() {
+  modal.style.display = "block";
+}
 
 document.addEventListener('keyup', function(e) {
     const allowedKeys = {
@@ -107,3 +115,13 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+const modal = document.getElementById('myModal');
+const replayButton = document.getElementsByTagName('button')[0];
+
+replayButton.addEventListener('click', function() {
+  modal.style.display = "none";
+  player.reset();
+  enemyReset();
+})
