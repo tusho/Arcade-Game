@@ -1,4 +1,4 @@
-var Enemy = function(x, y, speed) {
+let Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
@@ -10,16 +10,16 @@ Enemy.prototype.render = function() {
 };
 
 function getRandomSpeed() {
-    return Math.floor(Math.random() * (200 - 50) ) + 10;
+    return Math.floor(Math.random() * (200 - 50) ) + 50;
 }
 
 function getRandomPosition() {
-    var colArray = [60, 145, 230];
+    const colArray = [60, 145, 230];
     let i = Math.floor((Math.random() * 3));
     return colArray[i];
 }
 
-var allEnemies = [];
+let allEnemies = [];
 
 for (i=0; i <= 4; i++) {
     allEnemies.push(new Enemy(-160, getRandomPosition(), getRandomSpeed()));
@@ -28,8 +28,9 @@ for (i=0; i <= 4; i++) {
 Enemy.prototype.update = function(dt) {
       this.x += (this.speed * dt);
       if (this.x > 500) {
-        this.x = -200;
+        this.x = -150;
       }
+      checkCollisions();
 };
 
 
@@ -38,7 +39,7 @@ allEnemies.forEach (function (){
 });
 
 
-var Player = function() {
+let Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 200;
     this.y = 400;
@@ -84,10 +85,20 @@ Player.prototype.handleInput = function (keyCode) {
     }
 };
 
-var player = new Player();
+let player = new Player();
+
+function checkCollisions() {
+  allEnemies.forEach(function(enemy) {
+      if ((enemy.x > (player.x - 70) & enemy.x < (player.x + 70)) && (enemy.y > (player.y - 20) & enemy.y < (player.y + 20))) {
+        player.reset();
+      }
+  });
+}
+
+
 
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    const allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
