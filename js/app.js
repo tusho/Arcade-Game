@@ -14,13 +14,15 @@ function getRandomSpeed() {
 }
 
 function getRandomPosition() {
-    return Math.floor(Math.random() * (400 - 10) ) + 10;
+    var colArray = [60, 145, 230];
+    let i = Math.floor((Math.random() * 3));
+    return colArray[i];
 }
 
 var allEnemies = [];
 
-for (i=0; i <= 6; i++) {
-    allEnemies.push(new Enemy(-200, getRandomPosition(), getRandomSpeed()));
+for (i=0; i <= 4; i++) {
+    allEnemies.push(new Enemy(-160, getRandomPosition(), getRandomSpeed()));
 }
 
 Enemy.prototype.update = function(dt) {
