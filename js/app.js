@@ -1,6 +1,6 @@
 var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
-    this.x = 5;
+    this.x = -100;
     this.y = 5;
     this.speed = 225;
 };
@@ -10,7 +10,9 @@ Enemy.prototype.render = function() {
 };
 
 Enemy.prototype.update = function(dt) {
-
+    if (this.x < 503) {
+      this.x += (200 * dt);
+    }
 };
 
 var allEnemies = [];
@@ -26,7 +28,9 @@ var Player = function() {
 };
 
 Player.prototype.update = function(dt) {
-
+    if (this.y < 50) {
+      this.reset();
+    }
 };
 
 Player.prototype.render = function() {
@@ -39,21 +43,29 @@ Player.prototype.reset = function () {
 };
 
 Player.prototype.handleInput = function (keyCode) {
-  if (keyCode === 'up' && this.y > 20) {
-    this.y -= 83;
-    if (this.y < 50) {
-      this.reset();
+    switch (keyCode) {
+        case 'up':
+            if (this.y > 20) {
+              this.y -= 83;
+            }
+            break;
+        case 'right':
+            if (this.x < 400) {
+              this.x += 100;
+            }
+            break;
+        case 'down':
+            if (this.y < 400) {
+              this.y += 83;
+            }
+            break;
+        case 'left':
+            if (this.x > 20) {
+              this.x -= 100;
+            }
+            break;
     }
-  } else if (keyCode === 'right' && this.x < 400) {
-    this.x += 100;
-  } else if (keyCode === 'down' && this.y < 400) {
-    this.y += 83;
-  } else if (keyCode === 'left' && this.x > 20) {
-    this.x -= 100;
-  }
 };
-
-
 
 var player = new Player();
 
