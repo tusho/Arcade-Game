@@ -1,3 +1,5 @@
+//Functions to create, position and move multiple Enemies
+
 let Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
@@ -8,16 +10,6 @@ let Enemy = function(x, y, speed) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-function getRandomSpeed() {
-    return Math.floor(Math.random() * (200 - 50) ) + 50;
-}
-
-function getRandomPosition() {
-    const colArray = [60, 145, 230];
-    let i = Math.floor((Math.random() * 3));
-    return colArray[i];
-}
 
 let allEnemies = [];
 
@@ -38,6 +30,8 @@ allEnemies.forEach (function (){
     this.y = 100;
 });
 
+
+//Functions to create, position and move our Plyer
 
 let Player = function() {
     this.sprite = 'images/char-boy.png';
@@ -87,10 +81,24 @@ Player.prototype.handleInput = function (keyCode) {
 
 let player = new Player();
 
+
+// Functions to randomise positions & speed, check for Collisions and reset the game
+
+function getRandomSpeed() {
+    return Math.floor(Math.random() * (200 - 50) ) + 50;
+}
+
+function getRandomPosition() {
+    const colArray = [60, 145, 230];
+    let i = Math.floor((Math.random() * 3));
+    return colArray[i];
+}
+
 function checkCollisions() {
   allEnemies.forEach(function(enemy) {
       if ((enemy.x > (player.x - 70) & enemy.x < (player.x + 70)) && (enemy.y > (player.y - 20) & enemy.y < (player.y + 20))) {
         player.reset();
+        enemyReset();
       }
   });
 }
@@ -105,6 +113,9 @@ function gameFinish() {
   modal.style.display = "block";
 }
 
+
+// Event Listener for Keyboard inputs
+
 document.addEventListener('keyup', function(e) {
     const allowedKeys = {
         37: 'left',
@@ -116,6 +127,8 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+
+// Script to load our popup upon successful completion of the game
 
 const modal = document.getElementById('myModal');
 const replayButton = document.getElementsByTagName('button')[0];
