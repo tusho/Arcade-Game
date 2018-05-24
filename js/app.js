@@ -1,24 +1,39 @@
-var Enemy = function() {
+var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
-    this.x = -100;
-    this.y = 5;
-    this.speed = 225;
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
 };
 
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.update = function(dt) {
-    if (this.x < 503) {
-      this.x += (200 * dt);
-    }
-};
+function getRandomSpeed() {
+    return Math.floor(Math.random() * (200 - 50) ) + 10;
+}
+
+function getRandomPosition() {
+    return Math.floor(Math.random() * (400 - 10) ) + 10;
+}
 
 var allEnemies = [];
+
 for (i=0; i <= 6; i++) {
-  allEnemies.push(new Enemy());
+    allEnemies.push(new Enemy(-200, getRandomPosition(), getRandomSpeed()));
 }
+
+Enemy.prototype.update = function(dt) {
+      this.x += (this.speed * dt);
+      if (this.x > 500) {
+        this.x = -200;
+      }
+};
+
+
+allEnemies.forEach (function (){
+    this.y = 100;
+});
 
 
 var Player = function() {
